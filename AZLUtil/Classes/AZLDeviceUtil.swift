@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// infoplist常用key的枚举
 public enum AZLInfoPlistKeyName: String {
     /// bundle id
     case bundleID = "CFBundleIdentifier"
@@ -18,7 +19,7 @@ public enum AZLInfoPlistKeyName: String {
     case buildNum = "CFBundleVersion"
 }
 
-public class AZLDeviceUtil: NSObject {
+public class AZLDeviceUtil {
     /// 设备类型缓存值
     static var deviceTypeNameCache = ""
     
@@ -35,7 +36,15 @@ public class AZLDeviceUtil: NSObject {
         }
         
         //iPhone
-        if platform == "iPhone13,1" { 
+        if platform == "iPhone14,2" {
+            deviceTypeNameCache = "iPhone 13 Pro"
+        } else if platform == "iPhone14,3" { 
+            deviceTypeNameCache = "iPhone 13 Pro Max"
+        } else if platform == "iPhone14,4" { 
+            deviceTypeNameCache = "iPhone 13 mini"
+        } else if platform == "iPhone14,5" { 
+            deviceTypeNameCache = "iPhone 13"
+        } else if platform == "iPhone13,1" { 
             deviceTypeNameCache = "iPhone 12 mini"
         } else if platform == "iPhone13,2" {
             deviceTypeNameCache = "iPhone 12"
@@ -241,6 +250,11 @@ public class AZLDeviceUtil: NSObject {
         return 44
     }
     
+    /// 默认statusBar的高度
+    public static func defaultStatusBarHeight() -> CGFloat {
+        return UIApplication.shared.statusBarFrame.size.height
+    }
+    
     /// ip地址
     public static func ipAddress() -> String {
         var addresses = [String]()
@@ -282,7 +296,7 @@ public class AZLDeviceUtil: NSObject {
     }
     
     /// cpu使用率
-    public func cpuUsage() -> Double {
+    public static func cpuUsage() -> Double {
         var totalUsageOfCPU: Double = 0.0
         var threadsList: thread_act_array_t?
         var threadsCount = mach_msg_type_number_t(0)
@@ -318,7 +332,7 @@ public class AZLDeviceUtil: NSObject {
     }
     
     /// 内存
-    public func memoryUsage() -> (used: UInt64, total: UInt64) {
+    public static func memoryUsage() -> (used: UInt64, total: UInt64) {
         var taskInfo = task_vm_info_data_t()
         var count = mach_msg_type_number_t(MemoryLayout<task_vm_info>.size) / 4
         let result: kern_return_t = withUnsafeMutablePointer(to: &taskInfo) {
