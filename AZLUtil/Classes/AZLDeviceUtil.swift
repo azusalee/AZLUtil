@@ -241,6 +241,7 @@ public class AZLDeviceUtil: NSObject {
         return 44
     }
     
+    /// ip地址
     public static func ipAddress() -> String {
         var addresses = [String]()
         var ifaddr: UnsafeMutablePointer<ifaddrs>?
@@ -281,7 +282,7 @@ public class AZLDeviceUtil: NSObject {
     }
     
     /// cpu使用率
-    func cpuUsage() -> Double {
+    public func cpuUsage() -> Double {
         var totalUsageOfCPU: Double = 0.0
         var threadsList: thread_act_array_t?
         var threadsCount = mach_msg_type_number_t(0)
@@ -317,7 +318,7 @@ public class AZLDeviceUtil: NSObject {
     }
     
     /// 内存
-    func memoryUsage() -> (used: UInt64, total: UInt64) {
+    public func memoryUsage() -> (used: UInt64, total: UInt64) {
         var taskInfo = task_vm_info_data_t()
         var count = mach_msg_type_number_t(MemoryLayout<task_vm_info>.size) / 4
         let result: kern_return_t = withUnsafeMutablePointer(to: &taskInfo) {
