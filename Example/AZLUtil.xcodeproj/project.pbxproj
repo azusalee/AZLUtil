@@ -40,13 +40,13 @@
 		607FACE51AFB9204008FA782 /* AZLUtil_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AZLUtil_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		654EB689E492A7AABE50A6F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		654EB689E492A7AABE50A6F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		6CEDD24BA0EC3435317E3AE1 /* Pods-AZLUtil_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AZLUtil_Example.release.xcconfig"; path = "Target Support Files/Pods-AZLUtil_Example/Pods-AZLUtil_Example.release.xcconfig"; sourceTree = "<group>"; };
-		7AD2FFD197ADBD33C6CEBA67 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		7AD2FFD197ADBD33C6CEBA67 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A2155C6350E38E3F2E08A93B /* Pods_AZLUtil_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AZLUtil_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB1AC2EB65CC90F0E131E021 /* Pods-AZLUtil_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AZLUtil_Example.debug.xcconfig"; path = "Target Support Files/Pods-AZLUtil_Example/Pods-AZLUtil_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		CB47366429EBE9678B2D30D4 /* Pods-AZLUtil_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AZLUtil_Tests.debug.xcconfig"; path = "Target Support Files/Pods-AZLUtil_Tests/Pods-AZLUtil_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F06BBFCB1E981BDC78FB39AA /* AZLUtil.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = AZLUtil.podspec; path = ../AZLUtil.podspec; sourceTree = "<group>"; };
+		F06BBFCB1E981BDC78FB39AA /* AZLUtil.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AZLUtil.podspec; path = ../AZLUtil.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +147,6 @@
 				CB47366429EBE9678B2D30D4 /* Pods-AZLUtil_Tests.debug.xcconfig */,
 				36FBAA65299A71F2A0D9707B /* Pods-AZLUtil_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -484,7 +484,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -499,7 +499,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
