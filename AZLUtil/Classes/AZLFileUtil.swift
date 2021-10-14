@@ -45,8 +45,11 @@ public enum AZLRootFolderType: AZLFolderTypeProtocol {
 }
 
 public enum AZLFileType {
+    /// 文件
     case file
+    /// 文件夹
     case folder
+    /// 不存在
     case notExist
 }
 
@@ -74,18 +77,18 @@ public class AZLFileUtil: NSObject {
     /// 写入数据
     public class func write(data: Data, folder: AZLFolderTypeProtocol, name: String) {
         let filePath = self.getFilePath(folder: folder, name: name)
-        try? data.write(to: URL.init(fileURLWithPath: filePath))
+        self.write(data: data, fullPath: filePath)
     }
     
     /// 写入数据(路径需要自己拼接)
     public class func write(data: Data, fullPath: String) {
-        try? data.write(to: URL.init(fileURLWithPath: fullPath))
+        try? data.write(to: URL.init(fileURLWithPath: fullPath), options: [.atomic])
     }
     
     /// 读取数据
     public class func readData(folder: AZLFolderTypeProtocol, name: String) -> Data? {
         let filePath = self.getFilePath(folder: folder, name: name)
-        let data = try? Data(contentsOf: URL.init(fileURLWithPath: filePath))
+        let data = self.readData(fullPath: filePath)
         return data
     }
     
@@ -98,8 +101,13 @@ public class AZLFileUtil: NSObject {
     /// 删除文件
     public class func delete(folder: AZLFolderTypeProtocol, name: String) {
         let filePath = self.getFilePath(folder: folder, name: name)
-        let fileManager = FileManager.default
-        try? fileManager.removeItem(atPath: filePath)
+        self.delete(fullPath: filePath)
+    }
+    
+    /// 删除文件夹
+    public class func delete(folder: AZLFolderTypeProtocol) {
+        let filePath = folder.folderPath()
+        self.delete(fullPath: filePath)
     }
     
     /// 删除文件(路径需要自己拼接)
