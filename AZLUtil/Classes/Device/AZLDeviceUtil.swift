@@ -7,18 +7,11 @@
 
 import UIKit
 
-/// infoplist常用key的枚举
-public enum AZLInfoPlistKeyName: String {
-    /// bundle id
-    case bundleID = "CFBundleIdentifier"
-    /// 名字
-    case displayName = "CFBundleDisplayName"
-    /// 发布版本
-    case version = "CFBundleShortVersionString"
-    /// build号
-    case buildNum = "CFBundleVersion"
-}
+/**
+获取设备信息工具类
 
+设备系统版本，设备类型，cpu使用率，内存等
+ */
 public class AZLDeviceUtil {
     /// 设备类型缓存值
     static var deviceTypeNameCache = ""
@@ -230,31 +223,6 @@ public class AZLDeviceUtil {
         return UIDevice.current.systemVersion
     }
     
-    /// safeArea
-    public static func safeAreaInset() -> UIEdgeInsets {
-        if #available(iOS 11.0, *) {
-            if let inset = UIApplication.shared.keyWindow?.safeAreaInsets {
-                return inset
-            }else if let inset = UIApplication.shared.windows.first?.safeAreaInsets {
-                return inset
-            }
-        } else {
-            // Fallback on earlier versions
-            
-        }
-        return UIEdgeInsets.init(top: 20, left: 0, bottom: 0, right: 0)
-    }
-    
-    /// 默认navigationBar的高度
-    public static func defaultNavBarHeight() -> CGFloat {
-        return 44
-    }
-    
-    /// 默认statusBar的高度
-    public static func defaultStatusBarHeight() -> CGFloat {
-        return UIApplication.shared.statusBarFrame.size.height
-    }
-    
     /// ip地址
     public static func ipAddress() -> String {
         var addresses = [String]()
@@ -279,12 +247,6 @@ public class AZLDeviceUtil {
             freeifaddrs(ifaddr)
         }
         return addresses.first ?? "0.0.0.0"
-    }
-    
-    /// 获取info.plist的数据
-    public static func infoPlistValue(keyType:AZLInfoPlistKeyName) -> String? {
-        let dict = Bundle.main.infoDictionary
-        return dict?[keyType.rawValue] as? String
     }
     
     /// 磁盘可用容量(单位b，1k = 1024b, 1m = 1024k, 1g = 1024m)
@@ -332,6 +294,8 @@ public class AZLDeviceUtil {
     }
     
     /// 内存
+    /// 
+    /// - Returns: used 已用量 total 总共用量
     public static func memoryUsage() -> (used: UInt64, total: UInt64) {
         var taskInfo = task_vm_info_data_t()
         var count = mach_msg_type_number_t(MemoryLayout<task_vm_info>.size) / 4
@@ -348,5 +312,31 @@ public class AZLDeviceUtil {
         
         let total = ProcessInfo.processInfo.physicalMemory
         return (used, total)
+    }
+    
+    // --- UI相关
+    /// safeArea
+    public static func safeAreaInset() -> UIEdgeInsets {
+        if #available(iOS 11.0, *) {
+            if let inset = UIApplication.shared.keyWindow?.safeAreaInsets {
+                return inset
+            } else if let inset = UIApplication.shared.windows.first?.safeAreaInsets {
+                return inset
+            }
+        } else {
+            // 之前的版本没有这个
+            
+        }
+        return UIEdgeInsets.init(top: 20, left: 0, bottom: 0, right: 0)
+    }
+    
+    /// 默认navigationBar的高度
+    public static func defaultNavBarHeight() -> CGFloat {
+        return 44
+    }
+    
+    /// 默认statusBar的高度
+    public static func defaultStatusBarHeight() -> CGFloat {
+        return UIApplication.shared.statusBarFrame.size.height
     }
 }
