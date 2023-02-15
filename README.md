@@ -5,6 +5,14 @@
 [![License](https://img.shields.io/cocoapods/l/AZLUtil.svg?style=flat)](https://cocoapods.org/pods/AZLUtil)
 [![Platform](https://img.shields.io/cocoapods/p/AZLUtil.svg?style=flat)](https://cocoapods.org/pods/AZLUtil)
 
+## 一些相关信息的网址
+
+苹果设备名及其对照id的网址
+[https://www.theiphonewiki.com/wiki/Models](https://www.theiphonewiki.com/wiki/Models)
+
+苹果处理器参数网址
+[https://kylebing.cn/tools/apple-chip/](https://kylebing.cn/tools/apple-chip/)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
