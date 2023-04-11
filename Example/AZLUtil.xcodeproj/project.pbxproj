@@ -46,7 +46,7 @@
 		A2155C6350E38E3F2E08A93B /* Pods_AZLUtil_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AZLUtil_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB1AC2EB65CC90F0E131E021 /* Pods-AZLUtil_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AZLUtil_Example.debug.xcconfig"; path = "Target Support Files/Pods-AZLUtil_Example/Pods-AZLUtil_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		CB47366429EBE9678B2D30D4 /* Pods-AZLUtil_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AZLUtil_Tests.debug.xcconfig"; path = "Target Support Files/Pods-AZLUtil_Tests/Pods-AZLUtil_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F06BBFCB1E981BDC78FB39AA /* AZLUtil.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AZLUtil.podspec; path = ../AZLUtil.podspec; sourceTree = "<group>"; };
+		F06BBFCB1E981BDC78FB39AA /* AZLUtil.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AZLUtil.podspec; path = ../AZLUtil.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
