@@ -10,7 +10,7 @@ import Foundation
 /*
 用于获取系统语言的工具类
  */
-public class AZLSystemLanguageUtil {
+public class AZLLanguageUtil {
     
     /**
      用于获取支持语言的 Bundle
@@ -60,6 +60,18 @@ public class AZLSystemLanguageUtil {
         if let appLanguage = appleLanguages?.first {
             return appLanguage
         }
+        return nil
+    }
+    
+    /// 获取app的语言，如 zh-Hans
+    public static func getAppLanguageCode() -> String? {
+        if let languageCode = Locale.current.languageCode {
+            if let scriptCode = Locale.current.scriptCode {
+                return languageCode+"-"+scriptCode
+            }
+            return languageCode
+        }
+        
         return nil
     }
 }
