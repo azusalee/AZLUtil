@@ -9,6 +9,7 @@ import Foundation
 
 /// 文件夹路径
 public struct AZLFolderPath {
+    // 路径的字符串
     public var rawValue: String
     public init(rawValue: String) {
         self.rawValue = rawValue

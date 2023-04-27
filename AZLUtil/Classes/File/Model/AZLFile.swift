@@ -11,7 +11,8 @@ import Foundation
 文件对象
  */
 public class AZLFile {
-    public enum FileType {
+    /// 文件路径类型
+    public enum FilePathType {
         /// 文件
         case file
         /// 文件夹
@@ -25,7 +26,7 @@ public class AZLFile {
     /// 文件名
     public var name: String = ""
     /// 文件类型
-    public var type: FileType = .notExist
+    public var type: FilePathType = .notExist
     /// 创建日期
     public var createDate: Date?
     /// 修改日期

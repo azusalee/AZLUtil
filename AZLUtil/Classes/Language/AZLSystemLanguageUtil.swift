@@ -10,7 +10,8 @@ import Foundation
 /*
 用于获取系统语言的工具类
  */
-public class AZLLanguageUtil {
+public struct AZLLanguageUtil {
+    private init() {}
     
     /**
      用于获取支持语言的 Bundle

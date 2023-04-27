@@ -12,9 +12,11 @@ import UIKit
 
 设备系统版本，设备类型，cpu使用率，内存等
  */
-public class AZLDeviceUtil {
+public struct AZLDeviceUtil {
     /// 设备类型缓存值
     static var deviceTypeNameCache = ""
+    
+    private init() {}
     
     /// 获取设备类型 (如果出新设备，需要手动更新这里)
     public static func deviceTypeName() -> String {

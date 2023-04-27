@@ -10,7 +10,8 @@ import Foundation
 /**
 文件操作工具类
  */
-public class AZLFileUtil {
+public struct AZLFileUtil {
+    private init() {}
     
     /// 获取文件路径
     /// 
@@ -18,10 +19,14 @@ public class AZLFileUtil {
     ///   - folder: 文件夹
     ///   - name: 文件名
     /// - Returns: 完整路径
-    public class func getFilePath(folder: AZLFolderPath, name: String) -> String {
+    public static func getFilePath(folder: AZLFolderPath, name: String) -> String {
         let folderPath = folder.rawValue
-        let filePath = folderPath+"/\(name)"
-        return filePath
+        // 自动补充/号
+        if folderPath.hasSuffix("/") {
+            return folderPath+"\(name)"
+        } else {
+            return folderPath+"/\(name)"
+        }
     }
     
     /// 写入数据
@@ -30,7 +35,7 @@ public class AZLFileUtil {
     ///   - data: 数据
     ///   - folder: 文件夹
     ///   - name: 文件名
-    public class func write(data: Data, folder: AZLFolderPath, name: String) {
+    public static func write(data: Data, folder: AZLFolderPath, name: String) {
         let filePath = self.getFilePath(folder: folder, name: name)
         self.write(data: data, fullPath: filePath)
     }
@@ -40,7 +45,7 @@ public class AZLFileUtil {
     /// - Parameters:
     ///   - data: 数据
     ///   - fullPath: 完整路径
-    public class func write(data: Data, fullPath: String) {
+    public static func write(data: Data, fullPath: String) {
         try? data.write(to: URL.init(fileURLWithPath: fullPath), options: [.atomic])
     }
     
@@ -50,7 +55,7 @@ public class AZLFileUtil {
     ///   - folder: 文件夹
     ///   - name: 文件名
     /// - Returns: 文件数据
-    public class func readData(folder: AZLFolderPath, name: String) -> Data? {
+    public static func readData(folder: AZLFolderPath, name: String) -> Data? {
         let filePath = self.getFilePath(folder: folder, name: name)
         let data = self.readData(fullPath: filePath)
         return data
@@ -60,7 +65,7 @@ public class AZLFileUtil {
     /// 
     /// - Parameter fullPath: 完整路径
     /// - Returns: 文件数据
-    public class func readData(fullPath: String) -> Data? {
+    public static func readData(fullPath: String) -> Data? {
         let data = try? Data(contentsOf: URL.init(fileURLWithPath: fullPath))
         return data
     }
@@ -70,7 +75,7 @@ public class AZLFileUtil {
     /// - Parameters:
     ///   - folder: 文件夹
     ///   - name: 文件名
-    public class func delete(folder: AZLFolderPath, name: String) {
+    public static func delete(folder: AZLFolderPath, name: String) {
         let filePath = self.getFilePath(folder: folder, name: name)
         self.delete(fullPath: filePath)
     }
@@ -78,7 +83,7 @@ public class AZLFileUtil {
     /// 删除文件夹
     /// 
     /// - Parameter folder: 文件夹
-    public class func delete(folder: AZLFolderPath) {
+    public static func delete(folder: AZLFolderPath) {
         let filePath = folder.rawValue
         self.delete(fullPath: filePath)
     }
@@ -86,7 +91,7 @@ public class AZLFileUtil {
     /// 删除文件(路径需要自己拼接)
     /// 
     /// - Parameter fullPath: 完整路径
-    public class func delete(fullPath: String) {
+    public static func delete(fullPath: String) {
         let fileManager = FileManager.default
         try? fileManager.removeItem(atPath: fullPath)
     }
@@ -95,7 +100,7 @@ public class AZLFileUtil {
     /// 
     /// - Parameter path: 文件路径
     /// - Returns: 文件类型
-    public class func checkFileType(path: String) -> AZLFile.FileType {
+    public static func checkFileType(path: String) -> AZLFile.FilePathType {
         var isDir: ObjCBool = false
         let isExist = FileManager.default.fileExists(atPath: path, isDirectory: &isDir)
         if isExist {
@@ -110,15 +115,17 @@ public class AZLFileUtil {
     /// 创建文件夹
     /// 
     /// - Parameter path: 完整路径
-    public class func createFolder(path: String) {
-        try? FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+    public static func createFolder(path: String) {
+        if checkFileType(path: path) == .notExist {
+            try? FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+        }
     }
     
     /// 获取文件对象
     /// 
     /// - Parameter path: 文件路径
     /// - Returns: 文件对象
-    public class func fileObject(path: String) -> AZLFile? {
+    public static func fileObject(path: String) -> AZLFile? {
         let fileManager = FileManager.default
         let fileType = self.checkFileType(path: path)
         
@@ -142,9 +149,10 @@ public class AZLFileUtil {
     /// 获取文件夹下子文件/文件夹
     /// - Parameter folderPath: 文件夹路径
     /// - Returns: 文件对象数组
-    public class func getSubFiles(folderPath: String) -> [AZLFile] {
+    public static func getSubFiles(folderPath: String) -> [AZLFile] {
         let fileManager = FileManager.default
         var subFiles: [AZLFile] = []
+        // 获取该文件夹下的所有子路径
         if let pathNameArray = try? fileManager.contentsOfDirectory(atPath: folderPath) {
             for pathName in pathNameArray {
                 let subPath = folderPath+"/"+pathName

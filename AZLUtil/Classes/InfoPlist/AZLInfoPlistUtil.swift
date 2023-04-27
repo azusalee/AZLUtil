@@ -33,7 +33,8 @@ extension AZLPlistKey {
 /**
 获取plist内容的工具类
  */
-public class AZLInfoPlistUtil {
+public struct AZLInfoPlistUtil {
+    private init() {}
     
     /// 获取info.plist的数据
     /// 

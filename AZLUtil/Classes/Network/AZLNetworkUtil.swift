@@ -11,7 +11,7 @@ import SystemConfiguration
 import SystemConfiguration.CaptiveNetwork
 
 /// 网络相关的工具类
-public class AZLNetworkUtil {
+public struct AZLNetworkUtil {
     private init() {}
     
     /// 网络类型
