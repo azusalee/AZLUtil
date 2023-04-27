@@ -15,7 +15,7 @@ class AZLDebugListViewController: UIViewController, UITableViewDelegate, UITable
     /// debug用cellModel 数组，用于控制debug列表显示
     var cellModels: [AZLDebugListCellModel] = []
 
-    var tableView: UITableView!
+    private var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +44,7 @@ class AZLDebugListViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.reloadData()
     }
 
+    // tableview回调
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellModels.count
     }

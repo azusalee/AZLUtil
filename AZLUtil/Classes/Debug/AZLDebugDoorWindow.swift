@@ -15,11 +15,11 @@ class AZLDebugDoorWindow: UIWindow {
     // 入口的宽度
     private static let DoorSize: CGFloat = 50.0
     // debug 的入口按钮
-    var doorButton: UIButton?
+    private var doorButton: UIButton?
     
     private var panGesture: UIPanGestureRecognizer?
     
-    var lastOrigin: CGPoint = CGPoint.init(x: 0, y: 0)
+    private var lastOrigin: CGPoint = CGPoint.init(x: 0, y: 0)
     
     /// 创建默认位置的debug window
     class func createDefaultWindow() -> AZLDebugDoorWindow {
@@ -35,7 +35,7 @@ class AZLDebugDoorWindow: UIWindow {
         super.init(coder: coder)
     }
     
-    func setup() {
+    private func setup() {
         self.lastOrigin = self.frame.origin
         self.rootViewController = AZLDebugDoorViewController()
         self.backgroundColor = .clear
@@ -59,7 +59,7 @@ class AZLDebugDoorWindow: UIWindow {
     
     /// 拖动手势处理，调整拖动后，入口的位置，防止停留在难以点击的位置
     @objc
-    func viewDidPan(gesture: UIPanGestureRecognizer) {
+    private func viewDidPan(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
         case .began, .changed:
             let tranlate = gesture.translation(in: self)
@@ -111,7 +111,7 @@ class AZLDebugDoorWindow: UIWindow {
     
     /// 入口被点击
     @objc
-    func doorDidTap(_ sender: UIButton) {
+    private func doorDidTap(_ sender: UIButton) {
         self.lastOrigin = self.frame.origin
         
         let rootVC = self.rootViewController

@@ -23,10 +23,10 @@ public class AZLLanguageUtil {
     static var userDefault: UserDefaults = UserDefaults.standard
     
     /**
-     获取系统支持的语言code
+     获取App支持的语言code
      @return [String] 语言code数组
      */
-    public static func getSystemSupportLanguageCodes() -> [String] {
+    public static func getAppSupportLanguageCodes() -> [String] {
         // app支持的语言
         let langs = self.bundle.localizations
         return langs

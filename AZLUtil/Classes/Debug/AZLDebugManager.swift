@@ -17,10 +17,12 @@ public class AZLDebugManager: NSObject {
     
     public static let sharedInstance = AZLDebugManager()
     /// 用于显示debug入口的window
-    var debugWindow: AZLDebugDoorWindow?
+    private var debugWindow: AZLDebugDoorWindow?
     
-    var motionManager: CMMotionManager?
-    var lastAcceleration: CMAcceleration?
+    /// 监听陀螺仪
+    private var motionManager: CMMotionManager?
+    /// 上一个速度，用于计算前后速度变化，判断是否摇了一摇
+    private var lastAcceleration: CMAcceleration?
     
     /// 自定义debug入口，用于debug列表显示
     public var customDebugCellModel: [AZLDebugListCellModel] = []
@@ -71,14 +73,13 @@ public class AZLDebugManager: NSObject {
     }
     
     /// 展示debug列表(这里不使用悬浮窗)
-    public func showDebugList() {
-        if let rootVC = UIApplication.shared.windows.first?.rootViewController {
-            let controller = AZLDebugListViewController()
-            controller.cellModels = self.customDebugCellModel
-            let navVC = UINavigationController.init(rootViewController: controller)
-            navVC.modalPresentationStyle = .fullScreen
-            rootVC.present(navVC, animated: true, completion: nil)
-        }
+    /// 传入用与present的controller
+    public func showDebugList(in controller: UIViewController) {
+        let debugVC = AZLDebugListViewController()
+        debugVC.cellModels = self.customDebugCellModel
+        let navVC = UINavigationController.init(rootViewController: debugVC)
+        navVC.modalPresentationStyle = .fullScreen
+        controller.present(navVC, animated: true, completion: nil)
     }
 
 }
