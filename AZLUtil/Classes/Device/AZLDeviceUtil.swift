@@ -256,4 +256,13 @@ public struct AZLDeviceUtil {
         return (appUsed, totalUsed, total)
     }
     
+    /// 是否iPad
+    static func isIPad() -> Bool {
+        return UIDevice.current.model == "iPad"
+    }
+    
+    /// 是否iPhone
+    static func isIPhone() -> Bool {
+        return UIDevice.current.model == "iPhone"
+    }
 }
